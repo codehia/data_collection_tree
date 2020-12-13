@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from tree import Tree
 
+tree = Tree()
 app = FastAPI()
 
 
@@ -29,13 +30,11 @@ def read_root():
 
 @app.post("/v1/insert/")
 def inset(item: Item):
-    tree = Tree()
     return tree.insert_data(item.dict())
 
 
 @app.get("/v1/query/{key}/{value}")
 def query(key: str, value: str):
-    tree = Tree()
     return tree.fetch_data(key, value)
     return {"Hello": "World"}
 
